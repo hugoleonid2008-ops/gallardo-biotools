@@ -1,5 +1,5 @@
-// Gallardo BioTools — Service Worker v3
-const CACHE_NAME = 'gallardo-biotools-v3';
+// Gallardo BioTools — Service Worker v4
+const CACHE_NAME = 'gallardo-biotools-v4';
 
 const ASSETS = [
   'index.html',
@@ -8,6 +8,7 @@ const ASSETS = [
   './biolab/index_en.html',
   './tools/mapa-misiones.html',
   './tools/competencia-grupal.html',
+  './tools/competencia-grupal-replicacion-adn.html',
   './citopolis/index.html',
   './citopolis/main.html',
   './citopolis/parp.html',
