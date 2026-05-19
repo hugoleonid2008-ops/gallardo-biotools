@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="../icon-192.png">
     <title>BioLab Interactive &mdash; Competencia en Grupo</title>
-    <meta name="description" content="Tabla de ranking y radar de habilidades para competencias grupales en BioLab Interactive. Compara resultados en oncolog&iacute;a molecular, nanomedicina y biolog&iacute;a molecular.">
+    <meta name="description" content="Tabla de ranking y radar de habilidades para competencias grupales en BioLab Interactive. Compara resultados en oncología molecular, nanomedicina y biología molecular.">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X5BT5RP5WF"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -48,7 +48,7 @@
                 radial-gradient(ellipse at 75% 60%, rgba(245,158,11,0.05) 0%, transparent 45%);
         }
 
-        /* Header */
+        /* ── Header ─────────────────────────────── */
         .page-header{
             position:sticky;top:0;z-index:100;
             background:rgba(8,11,20,0.92);backdrop-filter:blur(16px);
@@ -77,7 +77,7 @@
         .back-link{display:inline-block;font-size:0.7rem;color:#a78bfa;text-decoration:none;margin-bottom:1.5rem;transition:color 0.2s;}
         .back-link:hover{color:#c4b5fd;}
 
-        /* Sections */
+        /* ── Sections ───────────────────────────── */
         .section{
             background:rgba(15,23,42,0.7);border:1px solid rgba(139,92,246,0.15);
             border-radius:16px;padding:1.25rem;margin-bottom:1.5rem;
@@ -88,7 +88,49 @@
             color:#c4b5fd;margin-bottom:1rem;text-transform:uppercase;letter-spacing:0.08em;
         }
 
-        /* Input area */
+        /* ── Competition selector ───────────────── */
+        .comp-selector{
+            display:grid;
+            grid-template-columns:repeat(auto-fill, minmax(160px, 1fr));
+            gap:0.65rem;
+            margin-bottom:0.5rem;
+        }
+        .comp-card{
+            position:relative;
+            background:rgba(30,41,59,0.5);
+            border:2px solid rgba(71,85,105,0.25);
+            border-radius:12px;
+            padding:0.75rem 0.85rem;
+            cursor:pointer;
+            transition:all 0.2s;
+            user-select:none;
+        }
+        .comp-card:hover{
+            border-color:rgba(139,92,246,0.45);
+            background:rgba(139,92,246,0.08);
+        }
+        .comp-card.selected{
+            border-color:var(--comp-color, #8b5cf6);
+            background:rgba(139,92,246,0.12);
+            box-shadow:0 0 0 1px var(--comp-color, #8b5cf6) inset;
+        }
+        .comp-card-icon{font-size:1.3rem;margin-bottom:0.3rem;}
+        .comp-card-name{
+            font-family:'Orbitron',monospace;font-size:0.62rem;font-weight:700;
+            color:#e9d5ff;margin-bottom:0.15rem;
+        }
+        .comp-card-desc{font-size:0.6rem;color:#64748b;line-height:1.4;}
+        .comp-card-badge{
+            position:absolute;top:0.5rem;right:0.6rem;
+            font-family:'Orbitron',monospace;font-size:0.48rem;
+            padding:2px 6px;border-radius:6px;
+        }
+        .comp-active-label{
+            font-size:0.68rem;color:#94a3b8;margin-top:0.6rem;
+        }
+        .comp-active-label strong{color:#c4b5fd;}
+
+        /* ── Input area ─────────────────────────── */
         .input-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;}
         .input-field{
             flex:1;min-width:120px;
@@ -119,7 +161,7 @@
         }
         .btn-danger:hover{background:rgba(239,68,68,0.2);}
 
-        /* Tabs */
+        /* ── Tabs ───────────────────────────────── */
         .tabs{display:flex;gap:0;margin-bottom:1rem;border-bottom:1px solid rgba(71,85,105,0.2);}
         .tab{
             font-family:'Orbitron',monospace;font-size:0.6rem;
@@ -132,7 +174,7 @@
         .tab-panel{display:none;}
         .tab-panel.active{display:block;}
 
-        /* Participant chips */
+        /* ── Participant chips ───────────────────── */
         .participants-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;}
         .p-chip{
             display:flex;align-items:center;gap:0.5rem;
@@ -147,9 +189,9 @@
         }
         .p-chip .p-remove:hover{color:#f87171;}
 
-        /* Ranking table */
+        /* ── Ranking table ──────────────────────── */
         .ranking-wrap{overflow-x:auto;margin-top:0.5rem;}
-        .ranking-table{width:100%;border-collapse:collapse;font-size:0.7rem;min-width:600px;}
+        .ranking-table{width:100%;border-collapse:collapse;font-size:0.7rem;min-width:500px;}
         .ranking-table th{
             text-align:left;padding:8px 6px;color:#94a3b8;font-weight:600;
             border-bottom:1px solid rgba(139,92,246,0.2);
@@ -186,15 +228,13 @@
         .score-cell.low{color:#f87171;}
         .score-cell.na{color:#475569;font-style:italic;}
 
-        .total-score{
-            font-family:'Orbitron',monospace;font-weight:700;font-size:0.8rem;
-        }
+        .total-score{font-family:'Orbitron',monospace;font-weight:700;font-size:0.8rem;}
         .macro-cell{font-family:'Orbitron',monospace;font-size:0.65rem;}
         .macro-cell.onco{color:#f472b6;}
         .macro-cell.nano{color:#fbbf24;}
         .macro-cell.biomol{color:#60a5fa;}
 
-        /* Radar charts grid */
+        /* ── Radar charts ───────────────────────── */
         .radar-grid{
             display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
             gap:1rem;margin-top:0.75rem;
@@ -210,10 +250,7 @@
         .radar-svg{display:block;margin:0 auto;}
         .radar-legend{font-size:0.55rem;color:#94a3b8;margin-top:0.4rem;}
 
-        /* Export section */
-        .export-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
-
-        /* Skills reference */
+        /* ── Skills reference ───────────────────── */
         .skills-ref{
             display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
             gap:0.5rem;margin-top:0.5rem;
@@ -226,10 +263,14 @@
         .skill-ref-name.onco{color:#f472b6;}
         .skill-ref-name.nano{color:#fbbf24;}
         .skill-ref-name.biomol{color:#60a5fa;}
+        .skill-ref-name.repli{color:#3b82f6;}
         .skill-ref-game{font-size:0.6rem;color:#94a3b8;}
         .skill-ref-levels{font-size:0.55rem;color:#64748b;margin-top:0.25rem;}
 
-        /* Notification toast */
+        /* ── Export ─────────────────────────────── */
+        .export-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:1rem;}
+
+        /* ── Toast ──────────────────────────────── */
         .toast{
             position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);
             background:rgba(16,185,129,0.9);color:#fff;
@@ -239,7 +280,7 @@
         }
         .toast.show{transform:translateX(-50%) translateY(0);}
 
-        /* Footer */
+        /* ── Footer ─────────────────────────────── */
         .page-footer{
             text-align:center;margin-top:2rem;padding-top:1.5rem;
             border-top:1px solid rgba(71,85,105,0.15);
@@ -247,13 +288,15 @@
         .page-footer p{font-size:0.7rem;color:#475569;line-height:1.6;}
         .page-footer a{color:#a78bfa;text-decoration:none;}
 
-        /* Responsive */
+        /* ── Responsive ─────────────────────────── */
         @media(max-width:600px){
             .ranking-table{font-size:0.6rem;}
             .radar-grid{grid-template-columns:1fr 1fr;}
+            .comp-selector{grid-template-columns:1fr 1fr;}
         }
         @media(max-width:400px){
             .radar-grid{grid-template-columns:1fr;}
+            .comp-selector{grid-template-columns:1fr;}
         }
     </style>
 </head>
@@ -263,6 +306,7 @@
     <div class="page-header-inner">
         <span class="page-title">Competencia en Grupo</span>
         <div class="header-pills">
+            <span class="pill" id="pillComp">Completa</span>
             <span class="pill">Participantes: <span class="v" id="pillCount">0</span></span>
         </div>
     </div>
@@ -271,7 +315,14 @@
 <main>
     <a href="mapa-misiones.html" class="back-link">&larr; Volver al Mapa de Misiones</a>
 
-    <!-- SKILLS REFERENCE -->
+    <!-- ══ COMPETITION SELECTOR ══════════════════════════════════ -->
+    <div class="section">
+        <div class="section-title">Seleccionar Competencia</div>
+        <div class="comp-selector" id="compSelector"></div>
+        <div class="comp-active-label" id="compActiveLabel"></div>
+    </div>
+
+    <!-- ══ SKILLS REFERENCE ══════════════════════════════════════ -->
     <div class="section">
         <div class="section-title">Habilidades Evaluadas</div>
         <div class="skills-ref" id="skillsRef"></div>
@@ -283,7 +334,7 @@
         </div>
     </div>
 
-    <!-- ADD PARTICIPANTS -->
+    <!-- ══ ADD PARTICIPANTS ═══════════════════════════════════════ -->
     <div class="section">
         <div class="section-title">Agregar Participantes</div>
         <div class="tabs">
@@ -292,26 +343,23 @@
             <button class="tab" onclick="switchTab('tabLocal')">Mi Resultado</button>
         </div>
 
-        <!-- Tab: Paste share code -->
         <div class="tab-panel active" id="tabCode">
-            <textarea class="input-field" id="codeInput" placeholder="Pega uno o m&aacute;s c&oacute;digos de resultado (uno por l&iacute;nea). Los participantes los generan desde el mapa de misiones con el bot&oacute;n &laquo;Compartir Resultado&raquo;."></textarea>
+            <textarea class="input-field" id="codeInput" placeholder="Pega uno o m&aacute;s c&oacute;digos de resultado (uno por l&iacute;nea)."></textarea>
             <div style="margin-top:0.5rem;">
                 <button class="btn btn-primary" onclick="addFromCodes()">Agregar</button>
             </div>
         </div>
 
-        <!-- Tab: Manual entry -->
         <div class="tab-panel" id="tabManual">
             <div class="input-row">
                 <input class="input-field" id="manualName" placeholder="Nombre del participante" maxlength="60">
             </div>
-            <div class="input-row" id="manualScores"></div>
+            <div class="input-row" id="manualScores" style="flex-wrap:wrap;gap:0.4rem;"></div>
             <div style="margin-top:0.5rem;">
                 <button class="btn btn-primary" onclick="addManual()">Agregar</button>
             </div>
         </div>
 
-        <!-- Tab: Load from localStorage -->
         <div class="tab-panel" id="tabLocal">
             <p style="font-size:0.75rem;color:#94a3b8;margin-bottom:0.75rem;">
                 Carga tu propio resultado guardado en este navegador (requiere haber jugado al menos 1 misi&oacute;n y tener nombre registrado).
@@ -319,11 +367,10 @@
             <button class="btn btn-primary" onclick="addLocalPlayer()">Cargar Mi Resultado</button>
         </div>
 
-        <!-- Participants list -->
         <div class="participants-list" id="participantsList"></div>
     </div>
 
-    <!-- RANKING TABLE -->
+    <!-- ══ RANKING ════════════════════════════════════════════════ -->
     <div class="section" id="rankingSection" style="display:none;">
         <div class="section-title">Ranking</div>
         <div class="ranking-wrap">
@@ -334,13 +381,13 @@
         </div>
     </div>
 
-    <!-- RADAR CHARTS -->
+    <!-- ══ RADARS ═════════════════════════════════════════════════ -->
     <div class="section" id="radarSection" style="display:none;">
         <div class="section-title">Radares de Habilidades</div>
         <div class="radar-grid" id="radarGrid"></div>
     </div>
 
-    <!-- EXPORT -->
+    <!-- ══ EXPORT ════════════════════════════════════════════════ -->
     <div class="section" id="exportSection" style="display:none;">
         <div class="section-title">Exportar</div>
         <div class="export-row">
@@ -361,70 +408,195 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// === SKILLS MATRIX ===
-const SKILLS = [
-    {id:'citopolis_main', skill:'Estr\u00e9s Replicativo', category:'onco', game:'Cit\u00f3polis: Letalidad Sint\u00e9tica', scoreKey:'citopolis_main_best', playsKey:'citopolis_plays', total:5},
-    {id:'citopolis_parp', skill:'Reparaci\u00f3n del ADN', category:'onco', game:'PARP y BRCA', scoreKey:'citopolis_parp_best', playsKey:'citopolis_parp_plays', total:5},
-    {id:'citopolis_inmuno', skill:'Inmuno-oncolog\u00eda', category:'onco', game:'Inmunoterapia', scoreKey:'citopolis_inmuno_best', playsKey:'citopolis_inmuno_plays', total:5},
-    {id:'citopolis_p53', skill:'Supresi\u00f3n Tumoral', category:'onco', game:'p53: Guardi\u00e1n del Genoma', scoreKey:'citopolis_p53_best', playsKey:'citopolis_p53_plays', total:5},
-    {id:'nanomision', skill:'Nanodise\u00f1o Dirigido', category:'nano', game:'NanoMisi\u00f3n: HER2+', scoreKey:'nanomision_best', playsKey:'nanomision_plays', total:5},
-    {id:'oro_troya', skill:'Disrupci\u00f3n de Condensados', category:'nano', game:'El Oro como Caballo de Troya', scoreKey:'oro_troya_best', playsKey:'oro_troya_plays', total:5},
-    {id:'biomol_estructura', skill:'Estructura ADN', category:'biomol', game:'Estructura del ADN', scoreKey:'biomol_estructura_best', playsKey:'biomol_estructura_plays', total:5},
-    {id:'biomol_replicacion', skill:'Replicaci\u00f3n', category:'biomol', game:'Replicaci\u00f3n del ADN', scoreKey:'biomol_replicacion_best', playsKey:'biomol_replicacion_plays', total:5},
-    {id:'biomol_transcripcion', skill:'Transcripci\u00f3n', category:'biomol', game:'Transcripci\u00f3n y ARN', scoreKey:'biomol_transcripcion_best', playsKey:'biomol_transcripcion_plays', total:5},
-    {id:'biomol_traduccion', skill:'Traducci\u00f3n', category:'biomol', game:'Traducci\u00f3n', scoreKey:'biomol_traduccion_best', playsKey:'biomol_traduccion_plays', total:5},
-    {id:'biomol_mutaciones', skill:'Mutaciones', category:'biomol', game:'Mutaciones', scoreKey:'biomol_mutaciones_best', playsKey:'biomol_mutaciones_plays', total:5}
+// ════════════════════════════════════════════════════════════════
+//  MASTER SKILLS CATALOGUE
+// ════════════════════════════════════════════════════════════════
+const ALL_SKILLS = [
+    // ── Oncología ──
+    {id:'citopolis_main',    skill:'Estrés Replicativo',     category:'onco',  game:'Citópolis: Letalidad Sintética', scoreKey:'citopolis_main_best',   playsKey:'citopolis_plays',       total:5},
+    {id:'citopolis_parp',    skill:'Reparación del ADN',     category:'onco',  game:'PARP y BRCA',                              scoreKey:'citopolis_parp_best',   playsKey:'citopolis_parp_plays',  total:5},
+    {id:'citopolis_inmuno',  skill:'Inmuno-oncología',        category:'onco',  game:'Inmunoterapia',                            scoreKey:'citopolis_inmuno_best', playsKey:'citopolis_inmuno_plays',total:5},
+    {id:'citopolis_p53',     skill:'Supresión Tumoral',      category:'onco',  game:'p53: Guardián del Genoma',            scoreKey:'citopolis_p53_best',    playsKey:'citopolis_p53_plays',   total:5},
+    // ── Nanomedicina ──
+    {id:'nanomision',        skill:'Nanodiseño Dirigido',    category:'nano',  game:'NanoMisión: HER2+',                   scoreKey:'nanomision_best',       playsKey:'nanomision_plays',      total:5},
+    {id:'oro_troya',         skill:'Disrupc. Condensados',        category:'nano',  game:'El Oro como Caballo de Troya',             scoreKey:'oro_troya_best',        playsKey:'oro_troya_plays',       total:5},
+    // ── Biología Molecular ──
+    {id:'biomol_estructura', skill:'Estructura ADN',              category:'biomol',game:'Estructura del ADN',                       scoreKey:'biomol_estructura_best',playsKey:'biomol_estructura_plays',total:5},
+    {id:'biomol_replicacion',skill:'Replicación',            category:'biomol',game:'Replicación del ADN',                 scoreKey:'biomol_replicacion_best',playsKey:'biomol_replicacion_plays',total:5},
+    {id:'biomol_transcripcion',skill:'Transcripción',        category:'biomol',game:'Transcripción y ARN',                scoreKey:'biomol_transcripcion_best',playsKey:'biomol_transcripcion_plays',total:5},
+    {id:'biomol_traduccion', skill:'Traducción',             category:'biomol',game:'Traducción',                          scoreKey:'biomol_traduccion_best',playsKey:'biomol_traduccion_plays',total:5},
+    {id:'biomol_mutaciones', skill:'Mutaciones',                  category:'biomol',game:'Mutaciones',                              scoreKey:'biomol_mutaciones_best',playsKey:'biomol_mutaciones_plays',total:5},
+    // ── Replicación del ADN (detallada) ──
+    {id:'repli_ini',         skill:'Iniciación',             category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_ini_best',        playsKey:'repli_ini_plays',       total:5},
+    {id:'repli_desenr',      skill:'Desenrollamiento',            category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_desenr_best',     playsKey:'repli_desenr_plays',    total:5},
+    {id:'repli_prim',        skill:'Primasa/ARN primer',          category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_prim_best',       playsKey:'repli_prim_plays',      total:5},
+    {id:'repli_elong',       skill:'Elongación',             category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_elong_best',      playsKey:'repli_elong_plays',     total:5},
+    {id:'repli_corr',        skill:'Corrección/Fidelidad',   category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_corr_best',       playsKey:'repli_corr_plays',      total:5},
+    {id:'repli_ter',         skill:'Terminación',            category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_ter_best',        playsKey:'repli_ter_plays',       total:5},
+    {id:'repli_reg',         skill:'Regulación CDK',         category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_reg_best',        playsKey:'repli_reg_plays',       total:5},
+    {id:'repli_comp',        skill:'Telómeros/Cromatina',    category:'repli', game:'Replicación del ADN',                 scoreKey:'repli_comp_best',       playsKey:'repli_comp_plays',      total:5},
 ];
 
-// Participants array: [{name, scores:{id:score,...}}]
-let participants = [];
-let sortCol = 'total';
-let sortAsc = false;
+// ════════════════════════════════════════════════════════════════
+//  COMPETITION MODES
+// ════════════════════════════════════════════════════════════════
+const COMP_MODES = [
+    {
+        id:    'completa',
+        name:  'Completa',
+        icon:  '🧬',
+        desc:  'Todos los juegos · 11 habilidades',
+        color: '#8b5cf6',
+        badge: '11 hab.',
+        badgeStyle: 'background:rgba(139,92,246,0.2);color:#c4b5fd;border:1px solid rgba(139,92,246,0.35)',
+        filter: s => ['onco','nano','biomol'].includes(s.category),
+        macros: ['onco','nano','biomol']
+    },
+    {
+        id:    'onco',
+        name:  'Oncología',
+        icon:  '🎯',
+        desc:  'Citópolis · 4 habilidades',
+        color: '#f472b6',
+        badge: '4 hab.',
+        badgeStyle: 'background:rgba(244,114,182,0.15);color:#f472b6;border:1px solid rgba(244,114,182,0.3)',
+        filter: s => s.category === 'onco',
+        macros: ['onco']
+    },
+    {
+        id:    'nano',
+        name:  'Nanomedicina',
+        icon:  '⚗️',
+        desc:  'NanoMisión · 2 habilidades',
+        color: '#fbbf24',
+        badge: '2 hab.',
+        badgeStyle: 'background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3)',
+        filter: s => s.category === 'nano',
+        macros: ['nano']
+    },
+    {
+        id:    'biomol',
+        name:  'Biol. Molecular',
+        icon:  '🔬',
+        desc:  'Biomol · 5 habilidades',
+        color: '#60a5fa',
+        badge: '5 hab.',
+        badgeStyle: 'background:rgba(96,165,250,0.15);color:#60a5fa;border:1px solid rgba(96,165,250,0.3)',
+        filter: s => s.category === 'biomol',
+        macros: ['biomol']
+    },
+    {
+        id:    'repli',
+        name:  'Replicación ADN',
+        icon:  '🧪',
+        desc:  'Detallada · 8 habilidades',
+        color: '#3b82f6',
+        badge: '8 hab.',
+        badgeStyle: 'background:rgba(59,130,246,0.15);color:#3b82f6;border:1px solid rgba(59,130,246,0.3)',
+        filter: s => s.category === 'repli',
+        macros: ['repli']
+    },
+];
 
-// === INIT ===
+// ════════════════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════════════════
+let activeCompId = 'completa';
+let SKILLS       = [];          // subset of ALL_SKILLS for current mode
+let participants = [];
+let sortCol      = 'total';
+let sortAsc      = false;
+
+// ════════════════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-    renderSkillsRef();
-    renderManualInputs();
-    // Restore from sessionStorage
+    renderCompSelector();
+    applyMode('completa');
+
     const saved = sessionStorage.getItem('biolab_competition');
     if (saved) {
-        try {
-            participants = JSON.parse(saved);
-            refresh();
-        } catch(e){}
+        try { participants = JSON.parse(saved); refresh(); } catch(e){}
     }
 });
 
+// ════════════════════════════════════════════════════════════════
+//  COMPETITION SELECTOR
+// ════════════════════════════════════════════════════════════════
+function renderCompSelector() {
+    const el = document.getElementById('compSelector');
+    el.innerHTML = COMP_MODES.map(m => `
+        <div class="comp-card" id="cc_${m.id}" onclick="applyMode('${m.id}')"
+             style="--comp-color:${m.color}">
+            <span class="comp-card-badge" style="${m.badgeStyle}">${m.badge}</span>
+            <div class="comp-card-icon">${m.icon}</div>
+            <div class="comp-card-name">${m.name}</div>
+            <div class="comp-card-desc">${m.desc}</div>
+        </div>
+    `).join('');
+}
+
+function applyMode(modeId) {
+    activeCompId = modeId;
+    const mode   = COMP_MODES.find(m => m.id === modeId);
+    SKILLS       = ALL_SKILLS.filter(mode.filter);
+
+    // Update card selection
+    document.querySelectorAll('.comp-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById('cc_' + modeId).classList.add('selected');
+
+    // Header pill
+    document.getElementById('pillComp').textContent = mode.name;
+
+    // Active label
+    document.getElementById('compActiveLabel').innerHTML =
+        `Competencia activa: <strong>${mode.icon} ${mode.name}</strong> — ${SKILLS.length} habilidades evaluadas`;
+
+    // Re-render sub-components
+    renderSkillsRef();
+    renderManualInputs();
+    if (participants.length > 0) refresh();
+}
+
+// ════════════════════════════════════════════════════════════════
+//  SKILLS REFERENCE
+// ════════════════════════════════════════════════════════════════
 function renderSkillsRef() {
     const el = document.getElementById('skillsRef');
     el.innerHTML = SKILLS.map(s => `
         <div class="skill-ref-card">
             <div class="skill-ref-name ${s.category}">${s.skill}</div>
             <div class="skill-ref-game">${s.game}</div>
-            <div class="skill-ref-levels">M\u00e1x: ${s.total} pts &rarr; Experto</div>
+            <div class="skill-ref-levels">Máx: ${s.total} pts &rarr; Experto</div>
         </div>
     `).join('');
 }
 
+// ════════════════════════════════════════════════════════════════
+//  MANUAL INPUTS
+// ════════════════════════════════════════════════════════════════
 function renderManualInputs() {
     const el = document.getElementById('manualScores');
     el.innerHTML = SKILLS.map(s => `
-        <input class="input-field" style="flex:0 0 auto;width:100px;" type="number" min="0" max="${s.total}"
-            id="manual_${s.id}" placeholder="${s.skill.substring(0,12)}... (0-${s.total})">
+        <input class="input-field" style="flex:0 0 auto;width:110px;" type="number" min="0" max="${s.total}"
+            id="manual_${s.id}" placeholder="${s.skill.substring(0,10)}… (0-${s.total})">
     `).join('');
 }
 
-// === TABS ===
+// ════════════════════════════════════════════════════════════════
+//  TABS
+// ════════════════════════════════════════════════════════════════
 function switchTab(panelId) {
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.getElementById(panelId).classList.add('active');
-    // Activate the correct tab button
     const idx = panelId === 'tabCode' ? 0 : panelId === 'tabManual' ? 1 : 2;
     document.querySelectorAll('.tab')[idx].classList.add('active');
 }
 
-// === DECODE SHARE CODE ===
+// ════════════════════════════════════════════════════════════════
+//  DECODE SHARE CODE
+// ════════════════════════════════════════════════════════════════
 function decodeShareCode(code) {
     try {
         const raw = decodeURIComponent(escape(atob(code.trim())));
@@ -436,18 +608,15 @@ function decodeShareCode(code) {
         const scores = {};
         scoresPart.split(',').forEach(s => {
             const [id, val] = s.split(':');
-            if (id && val) {
-                const [sc] = val.split('/');
-                scores[id] = parseInt(sc);
-            }
+            if (id && val) { const [sc] = val.split('/'); scores[id] = parseInt(sc); }
         });
         return {name, scores};
-    } catch(e) {
-        return null;
-    }
+    } catch(e) { return null; }
 }
 
-// === ADD PARTICIPANTS ===
+// ════════════════════════════════════════════════════════════════
+//  ADD PARTICIPANTS
+// ════════════════════════════════════════════════════════════════
 function addFromCodes() {
     const raw = document.getElementById('codeInput').value.trim();
     if (!raw) return;
@@ -456,13 +625,11 @@ function addFromCodes() {
     lines.forEach(line => {
         const decoded = decodeShareCode(line);
         if (decoded) {
-            // Check duplicate name
             const existing = participants.findIndex(p => p.name.toLowerCase() === decoded.name.toLowerCase());
             if (existing >= 0) {
-                // Merge: keep best score per skill
-                const ex = participants[existing];
                 for (const [k,v] of Object.entries(decoded.scores)) {
-                    if (!ex.scores[k] || v > ex.scores[k]) ex.scores[k] = v;
+                    if (!participants[existing].scores[k] || v > participants[existing].scores[k])
+                        participants[existing].scores[k] = v;
                 }
             } else {
                 participants.push(decoded);
@@ -475,7 +642,7 @@ function addFromCodes() {
         refresh();
         showToast(added + ' participante(s) agregado(s)');
     } else {
-        showToast('No se pudo decodificar ning\u00fan c\u00f3digo');
+        showToast('No se pudo decodificar ningún código');
     }
 }
 
@@ -485,27 +652,21 @@ function addManual() {
     const scores = {};
     let any = false;
     SKILLS.forEach(s => {
-        const val = parseInt(document.getElementById('manual_' + s.id).value);
-        if (!isNaN(val) && val >= 0) {
-            scores[s.id] = Math.min(val, s.total);
-            any = true;
-        }
+        const val = parseInt(document.getElementById('manual_' + s.id)?.value);
+        if (!isNaN(val) && val >= 0) { scores[s.id] = Math.min(val, s.total); any = true; }
     });
-    if (!any) { showToast('Ingresa al menos 1 puntuaci\u00f3n'); return; }
-    // Duplicate check
+    if (!any) { showToast('Ingresa al menos 1 puntuación'); return; }
     const existing = participants.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
     if (existing >= 0) {
         for (const [k,v] of Object.entries(scores)) {
-            if (!participants[existing].scores[k] || v > participants[existing].scores[k]) {
+            if (!participants[existing].scores[k] || v > participants[existing].scores[k])
                 participants[existing].scores[k] = v;
-            }
         }
     } else {
         participants.push({name, scores});
     }
-    // Clear
     document.getElementById('manualName').value = '';
-    SKILLS.forEach(s => { document.getElementById('manual_' + s.id).value = ''; });
+    SKILLS.forEach(s => { const el = document.getElementById('manual_' + s.id); if(el) el.value=''; });
     refresh();
     showToast(name + ' agregado');
 }
@@ -518,20 +679,15 @@ function addLocalPlayer() {
     SKILLS.forEach(s => {
         const stored = localStorage.getItem(s.scoreKey);
         if (stored) {
-            try {
-                const d = JSON.parse(stored);
-                scores[s.id] = d.score;
-                any = true;
-            } catch(e) {}
+            try { const d = JSON.parse(stored); scores[s.id] = d.score; any = true; } catch(e){}
         }
     });
-    if (!any) { showToast('No hay misiones completadas'); return; }
+    if (!any) { showToast('No hay misiones completadas para esta competencia'); return; }
     const existing = participants.findIndex(p => p.name.toLowerCase() === name.toLowerCase());
     if (existing >= 0) {
         for (const [k,v] of Object.entries(scores)) {
-            if (!participants[existing].scores[k] || v > participants[existing].scores[k]) {
+            if (!participants[existing].scores[k] || v > participants[existing].scores[k])
                 participants[existing].scores[k] = v;
-            }
         }
     } else {
         participants.push({name, scores});
@@ -545,36 +701,47 @@ function removeParticipant(idx) {
     refresh();
 }
 
-// === COMPUTE ===
+// ════════════════════════════════════════════════════════════════
+//  COMPUTE ROW
+// ════════════════════════════════════════════════════════════════
 function computeRow(p) {
-    let total = 0, oncoSum = 0, oncoN = 0, nanoSum = 0, nanoN = 0, biomolSum = 0, biomolN = 0;
-    const skillScores = [];
-    SKILLS.forEach(s => {
+    let total = 0;
+    const macroSums = {}, macroCounts = {};
+    const mode = COMP_MODES.find(m => m.id === activeCompId);
+    mode.macros.forEach(cat => { macroSums[cat] = 0; macroCounts[cat] = 0; });
+
+    const skillScores = SKILLS.map(s => {
         const sc = p.scores[s.id] !== undefined ? p.scores[s.id] : null;
-        skillScores.push(sc);
         if (sc !== null) {
             total += sc;
-            if (s.category === 'onco') { oncoSum += sc; oncoN++; }
-            else if (s.category === 'nano') { nanoSum += sc; nanoN++; }
-            else if (s.category === 'biomol') { biomolSum += sc; biomolN++; }
+            if (macroSums[s.category] !== undefined) {
+                macroSums[s.category] += sc;
+                macroCounts[s.category]++;
+            }
         }
+        return sc;
     });
-    const oncoAvg = oncoN > 0 ? (oncoSum / (oncoN * 5) * 100) : 0;
-    const nanoAvg = nanoN > 0 ? (nanoSum / (nanoN * 5) * 100) : 0;
-    const biomolAvg = biomolN > 0 ? (biomolSum / (biomolN * 5) * 100) : 0;
-    const maxTotal = SKILLS.length * 5;
-    return {name: p.name, skillScores, total, maxTotal, oncoAvg, nanoAvg, biomolAvg, scores: p.scores};
+
+    const macroAvgs = {};
+    mode.macros.forEach(cat => {
+        macroAvgs[cat] = macroCounts[cat] > 0
+            ? (macroSums[cat] / (macroCounts[cat] * 5) * 100) : 0;
+    });
+
+    return {name: p.name, skillScores, total, maxTotal: SKILLS.length * 5, macroAvgs, scores: p.scores};
 }
 
 function getLevel(score) {
     if (score === null || score === undefined) return {label:'N/E', cls:'none'};
     if (score === 5) return {label:'Experto', cls:'experto'};
     if (score >= 3) return {label:'Competente', cls:'competente'};
-    if (score >= 1) return {label:'B\u00e1sico', cls:'basico'};
+    if (score >= 1) return {label:'Básico', cls:'basico'};
     return {label:'N/E', cls:'none'};
 }
 
-// === REFRESH ALL ===
+// ════════════════════════════════════════════════════════════════
+//  REFRESH
+// ════════════════════════════════════════════════════════════════
 function refresh() {
     sessionStorage.setItem('biolab_competition', JSON.stringify(participants));
     document.getElementById('pillCount').textContent = participants.length;
@@ -582,21 +749,21 @@ function refresh() {
     if (participants.length > 0) {
         renderRanking();
         renderRadars();
-        document.getElementById('rankingSection').style.display = '';
-        document.getElementById('radarSection').style.display = '';
-        document.getElementById('exportSection').style.display = '';
+        ['rankingSection','radarSection','exportSection'].forEach(id => {
+            document.getElementById(id).style.display = '';
+        });
     } else {
-        document.getElementById('rankingSection').style.display = 'none';
-        document.getElementById('radarSection').style.display = 'none';
-        document.getElementById('exportSection').style.display = 'none';
+        ['rankingSection','radarSection','exportSection'].forEach(id => {
+            document.getElementById(id).style.display = 'none';
+        });
     }
 }
 
 function renderChips() {
     const el = document.getElementById('participantsList');
-    if (participants.length === 0) { el.innerHTML = ''; return; }
+    if (!participants.length) { el.innerHTML = ''; return; }
     el.innerHTML = participants.map((p, i) => {
-        const total = Object.values(p.scores).reduce((a,b) => a+b, 0);
+        const total = SKILLS.reduce((a, s) => a + (p.scores[s.id] || 0), 0);
         return `<div class="p-chip">
             <span class="p-name">${esc(p.name)}</span>
             <span class="p-score">${total}/${SKILLS.length * 5}</span>
@@ -605,63 +772,67 @@ function renderChips() {
     }).join('');
 }
 
-// === RANKING TABLE ===
+// ════════════════════════════════════════════════════════════════
+//  RANKING TABLE
+// ════════════════════════════════════════════════════════════════
 function renderRanking() {
+    const mode = COMP_MODES.find(m => m.id === activeCompId);
     let rows = participants.map(computeRow);
+
     // Sort
-    rows.sort((a,b) => {
+    rows.sort((a, b) => {
         let va, vb;
         if (sortCol === 'total') { va = a.total; vb = b.total; }
         else if (sortCol === 'name') { va = a.name.toLowerCase(); vb = b.name.toLowerCase(); }
-        else if (sortCol === 'onco') { va = a.oncoAvg; vb = b.oncoAvg; }
-        else if (sortCol === 'nano') { va = a.nanoAvg; vb = b.nanoAvg; }
-        else if (sortCol === 'biomol') { va = a.biomolAvg; vb = b.biomolAvg; }
+        else if (mode.macros.includes(sortCol)) { va = a.macroAvgs[sortCol]; vb = b.macroAvgs[sortCol]; }
         else {
             const idx = SKILLS.findIndex(s => s.id === sortCol);
-            va = a.skillScores[idx] !== null ? a.skillScores[idx] : -1;
-            vb = b.skillScores[idx] !== null ? b.skillScores[idx] : -1;
+            va = idx >= 0 && a.skillScores[idx] !== null ? a.skillScores[idx] : -1;
+            vb = idx >= 0 && b.skillScores[idx] !== null ? b.skillScores[idx] : -1;
         }
         if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
         return sortAsc ? va - vb : vb - va;
     });
 
+    const arrow = col => sortCol === col ? (sortAsc ? ' ▲' : ' ▼') : '';
+
     // Header
-    const arrow = col => sortCol === col ? (sortAsc ? ' \u25B2' : ' \u25BC') : '';
+    const macroCatLabels = {onco:'Onco%', nano:'Nano%', biomol:'Biomol%', repli:'Detalle%'};
     let hHTML = `<tr>
         <th onclick="sortBy('name')">#</th>
         <th onclick="sortBy('name')">Nombre${arrow('name')}</th>`;
     SKILLS.forEach(s => {
-        const short = s.skill.length > 10 ? s.skill.substring(0,10)+'\u2026' : s.skill;
+        const short = s.skill.length > 10 ? s.skill.substring(0,10)+'…' : s.skill;
         hHTML += `<th onclick="sortBy('${s.id}')" title="${s.skill} (${s.game})">${short}${arrow(s.id)}</th>`;
     });
     hHTML += `<th onclick="sortBy('total')">Total${arrow('total')}</th>`;
-    hHTML += `<th onclick="sortBy('onco')">Onco%${arrow('onco')}</th>`;
-    hHTML += `<th onclick="sortBy('nano')">Nano%${arrow('nano')}</th>`;
-    hHTML += `<th onclick="sortBy('biomol')">Biomol%${arrow('biomol')}</th>`;
+    mode.macros.forEach(cat => {
+        hHTML += `<th onclick="sortBy('${cat}')">${macroCatLabels[cat]}${arrow(cat)}</th>`;
+    });
     hHTML += `</tr>`;
     document.getElementById('rankingHead').innerHTML = hHTML;
 
     // Body
     let bHTML = '';
     rows.forEach((r, i) => {
-        const rankCls = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-other';
+        const rankCls = i===0?'rank-1':i===1?'rank-2':i===2?'rank-3':'rank-other';
         bHTML += `<tr>
             <td><span class="rank-num ${rankCls}">${i+1}</span></td>
             <td style="font-weight:600;">${esc(r.name)}</td>`;
-        r.skillScores.forEach((sc, j) => {
+        r.skillScores.forEach(sc => {
             if (sc === null) {
-                bHTML += `<td class="score-cell na">\u2014</td>`;
+                bHTML += `<td class="score-cell na">—</td>`;
             } else {
+                const cls = sc===5?'perfect':sc>=3?'good':'low';
                 const lvl = getLevel(sc);
-                const cls = sc === 5 ? 'perfect' : sc >= 3 ? 'good' : 'low';
                 bHTML += `<td class="score-cell ${cls}" title="${lvl.label}">${sc}/5</td>`;
             }
         });
-        const maxT = SKILLS.length * 5;
-        bHTML += `<td class="total-score" style="color:${r.total >= maxT*0.8 ? '#10b981' : r.total >= maxT*0.5 ? '#a78bfa' : '#f87171'}">${r.total}/${maxT}</td>`;
-        bHTML += `<td class="macro-cell onco">${Math.round(r.oncoAvg)}%</td>`;
-        bHTML += `<td class="macro-cell nano">${Math.round(r.nanoAvg)}%</td>`;
-        bHTML += `<td class="macro-cell biomol">${Math.round(r.biomolAvg)}%</td>`;
+        const pct = r.maxTotal > 0 ? r.total/r.maxTotal : 0;
+        bHTML += `<td class="total-score" style="color:${pct>=0.8?'#10b981':pct>=0.5?'#a78bfa':'#f87171'}">${r.total}/${r.maxTotal}</td>`;
+        mode.macros.forEach(cat => {
+            bHTML += `<td class="macro-cell ${cat}">${Math.round(r.macroAvgs[cat]||0)}%</td>`;
+        });
         bHTML += `</tr>`;
     });
     document.getElementById('rankingBody').innerHTML = bHTML;
@@ -673,119 +844,137 @@ function sortBy(col) {
     renderRanking();
 }
 
-// === RADAR CHARTS ===
+// ════════════════════════════════════════════════════════════════
+//  RADAR CHARTS (SVG)
+// ════════════════════════════════════════════════════════════════
+const PALETTE = ['#8b5cf6','#ec4899','#f59e0b','#3b82f6','#10b981'];
+
 function renderRadars() {
     const grid = document.getElementById('radarGrid');
     grid.innerHTML = '';
     participants.forEach((p, idx) => {
-        const row = computeRow(p);
+        const row  = computeRow(p);
+        const mode = COMP_MODES.find(m => m.id === activeCompId);
         const card = document.createElement('div');
         card.className = 'radar-card';
+        const macroLine = mode.macros.map(cat => {
+            const labels = {onco:'Onco',nano:'Nano',biomol:'Biomol',repli:'Det.'};
+            return `${labels[cat]}: ${Math.round(row.macroAvgs[cat]||0)}%`;
+        }).join(' | ');
         card.innerHTML = `
             <div class="radar-name">${esc(p.name)}</div>
             ${createRadarSVG(row, idx)}
-            <div class="radar-legend">Total: ${row.total}/30 | Onco: ${Math.round(row.oncoAvg)}% | Nano: ${Math.round(row.nanoAvg)}%</div>
+            <div class="radar-legend">Total: ${row.total}/${row.maxTotal} | ${macroLine}</div>
         `;
         grid.appendChild(card);
     });
 }
 
 function createRadarSVG(row, idx) {
-    const W = 200, H = 200, cx = 100, cy = 105, R = 70;
+    const W=200,H=200,cx=100,cy=105,R=70;
     const n = SKILLS.length;
-    const colors = ['#f472b6','#f472b6','#f472b6','#f472b6','#fbbf24','#fbbf24'];
-    const fillColor = idx % 3 === 0 ? 'rgba(139,92,246,0.25)' : idx % 3 === 1 ? 'rgba(236,72,153,0.2)' : 'rgba(245,158,11,0.2)';
-    const strokeColor = idx % 3 === 0 ? '#8b5cf6' : idx % 3 === 1 ? '#ec4899' : '#f59e0b';
+    const fillColor   = idx%3===0?'rgba(139,92,246,0.25)':idx%3===1?'rgba(236,72,153,0.2)':'rgba(245,158,11,0.2)';
+    const strokeColor = PALETTE[idx % PALETTE.length];
+
+    // Category colors for axis labels
+    const catColor = {onco:'#f472b6',nano:'#fbbf24',biomol:'#60a5fa',repli:'#3b82f6'};
 
     let svg = `<svg class="radar-svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
 
     // Grid circles
-    for (let r = 1; r <= 5; r++) {
-        const rr = R * (r/5);
-        svg += `<circle cx="${cx}" cy="${cy}" r="${rr}" fill="none" stroke="rgba(100,116,139,${r===5?0.25:0.1})" stroke-width="0.5"/>`;
+    for (let r=1;r<=5;r++){
+        const rr=R*(r/5);
+        svg+=`<circle cx="${cx}" cy="${cy}" r="${rr}" fill="none" stroke="rgba(100,116,139,${r===5?0.25:0.1})" stroke-width="0.5"/>`;
     }
 
     // Axes + labels
-    const pts = [];
-    for (let i = 0; i < n; i++) {
-        const angle = -Math.PI/2 + (2*Math.PI/n)*i;
-        const x = cx + R * Math.cos(angle);
-        const y = cy + R * Math.sin(angle);
-        pts.push({x, y, angle});
-        svg += `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(100,116,139,0.15)" stroke-width="0.5"/>`;
-        // Label
-        const lx = cx + (R+16) * Math.cos(angle);
-        const ly = cy + (R+16) * Math.sin(angle);
-        const short = SKILLS[i].skill.length > 8 ? SKILLS[i].skill.substring(0,8)+'\u2026' : SKILLS[i].skill;
-        svg += `<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="5.5" fill="${colors[i]}" font-family="Inter">${short}</text>`;
+    for (let i=0;i<n;i++){
+        const angle=-Math.PI/2+(2*Math.PI/n)*i;
+        const x=cx+R*Math.cos(angle), y=cy+R*Math.sin(angle);
+        svg+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(100,116,139,0.15)" stroke-width="0.5"/>`;
+        const lx=cx+(R+16)*Math.cos(angle), ly=cy+(R+16)*Math.sin(angle);
+        const short=SKILLS[i].skill.length>8?SKILLS[i].skill.substring(0,8)+'…':SKILLS[i].skill;
+        const lc = catColor[SKILLS[i].category]||'#94a3b8';
+        svg+=`<text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" font-size="5.5" fill="${lc}" font-family="Inter">${short}</text>`;
     }
 
     // Data polygon
-    let polyPts = [];
-    for (let i = 0; i < n; i++) {
-        const val = row.skillScores[i] !== null ? row.skillScores[i] : 0;
-        const r = R * (val / 5);
-        const angle = -Math.PI/2 + (2*Math.PI/n)*i;
-        polyPts.push((cx + r*Math.cos(angle)).toFixed(1) + ',' + (cy + r*Math.sin(angle)).toFixed(1));
+    let polyPts=[];
+    for (let i=0;i<n;i++){
+        const val=row.skillScores[i]!==null?row.skillScores[i]:0;
+        const r=R*(val/5);
+        const angle=-Math.PI/2+(2*Math.PI/n)*i;
+        polyPts.push((cx+r*Math.cos(angle)).toFixed(1)+','+(cy+r*Math.sin(angle)).toFixed(1));
     }
-    svg += `<polygon points="${polyPts.join(' ')}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5"/>`;
+    svg+=`<polygon points="${polyPts.join(' ')}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="1.5"/>`;
 
-    // Data dots
-    for (let i = 0; i < n; i++) {
-        const val = row.skillScores[i] !== null ? row.skillScores[i] : 0;
-        const r = R * (val / 5);
-        const angle = -Math.PI/2 + (2*Math.PI/n)*i;
-        const dx = cx + r*Math.cos(angle);
-        const dy = cy + r*Math.sin(angle);
-        svg += `<circle cx="${dx}" cy="${dy}" r="2.5" fill="${strokeColor}" stroke="#080b14" stroke-width="0.5"/>`;
+    // Dots
+    for (let i=0;i<n;i++){
+        const val=row.skillScores[i]!==null?row.skillScores[i]:0;
+        const r=R*(val/5);
+        const angle=-Math.PI/2+(2*Math.PI/n)*i;
+        svg+=`<circle cx="${(cx+r*Math.cos(angle)).toFixed(1)}" cy="${(cy+r*Math.sin(angle)).toFixed(1)}" r="2.5" fill="${strokeColor}" stroke="#080b14" stroke-width="0.5"/>`;
     }
 
-    svg += `</svg>`;
+    svg+=`</svg>`;
     return svg;
 }
 
-// === EXPORT ===
+// ════════════════════════════════════════════════════════════════
+//  EXPORT
+// ════════════════════════════════════════════════════════════════
 function exportCSV() {
-    let csv = 'Nombre,' + SKILLS.map(s => '"'+s.skill+'"').join(',') + ',Total,Onco%,Nano%\n';
+    const mode = COMP_MODES.find(m => m.id === activeCompId);
+    let csv = 'Nombre,' + SKILLS.map(s=>`"${s.skill}"`).join(',') + ',Total';
+    mode.macros.forEach(cat => { csv += `,${cat}%`; });
+    csv += '\n';
     participants.forEach(p => {
         const r = computeRow(p);
-        csv += '"' + r.name + '",' + r.skillScores.map(s => s !== null ? s : '').join(',');
-        csv += ',' + r.total + ',' + Math.round(r.oncoAvg) + ',' + Math.round(r.nanoAvg) + '\n';
+        csv += `"${r.name}",` + r.skillScores.map(s=>s!==null?s:'').join(',') + ',' + r.total;
+        mode.macros.forEach(cat => { csv += ',' + Math.round(r.macroAvgs[cat]||0); });
+        csv += '\n';
     });
-    downloadFile('biolab_competencia.csv', csv, 'text/csv');
+    downloadFile(`biolab_competencia_${activeCompId}_${stamp()}.csv`, csv, 'text/csv');
 }
 
 function exportJSON() {
+    const mode = COMP_MODES.find(m => m.id === activeCompId);
     const data = {
         fecha: new Date().toISOString(),
-        skills: SKILLS.map(s => ({id:s.id, skill:s.skill, category:s.category, game:s.game})),
+        competencia: mode.name,
+        skills: SKILLS.map(s=>({id:s.id,skill:s.skill,category:s.category,game:s.game})),
         participantes: participants.map(p => {
             const r = computeRow(p);
-            return {nombre:r.name, scores:p.scores, total:r.total, oncoAvg:Math.round(r.oncoAvg), nanoAvg:Math.round(r.nanoAvg)};
+            const macros = {};
+            mode.macros.forEach(cat => { macros[cat+'Avg'] = Math.round(r.macroAvgs[cat]||0); });
+            return {nombre:r.name, scores:p.scores, total:r.total, ...macros};
         })
     };
-    downloadFile('biolab_competencia.json', JSON.stringify(data, null, 2), 'application/json');
+    downloadFile(`biolab_competencia_${activeCompId}_${stamp()}.json`, JSON.stringify(data,null,2), 'application/json');
 }
 
 function downloadFile(name, content, type) {
-    const blob = new Blob([content], {type});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    const blob = new Blob([content],{type});
+    const a    = document.createElement('a');
+    a.href     = URL.createObjectURL(blob);
     a.download = name;
     a.click();
     URL.revokeObjectURL(a.href);
 }
 
 function clearAll() {
-    if (!confirm('\u00bfLimpiar todos los participantes?')) return;
+    if (!confirm('¿Limpiar todos los participantes?')) return;
     participants = [];
     sessionStorage.removeItem('biolab_competition');
     refresh();
     showToast('Lista limpiada');
 }
 
-// === UTILS ===
-function esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+// ════════════════════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════════════════════
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function stamp(){ return new Date().toISOString().slice(0,10); }
 
 function showToast(msg) {
     const t = document.getElementById('toast');
@@ -796,7 +985,7 @@ function showToast(msg) {
 </script>
 <script>
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    navigator.serviceWorker.register('../sw.js').catch(() => {});
 }
 </script>
 </body>
